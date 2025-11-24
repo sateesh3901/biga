@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIGA</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+    <h1>Billing and Invoice Generator</h1>
+
+    <div>
+        <h2>Customer Details</h2>
+        <label>Name: </label>
+        <input id="cname" type="text" placeholder="customer name">
+        <label>Phone Number: </label>
+        <input id="cphone" type="number" placeholder="customer phone number">
+        <p id="pmsg" style="display: none;">enter name and phone number with atleast 7 characters</p>
+    </div>
+
+    <div>
+        <h2>Product Entry</h2>
+        <label>Product Name: </label>
+        <input id="pname" type="text">
+        <label>Product Price(₹):</label>
+        <input id="pprice" type="number">
+        <label>Product Quantity: </label>
+        <input id="pquantity" type="number" value="1">
+        <button onclick="addProduct()" id="addbtn">Add Product</button>
+        <button onclick="updateProduct()" id="editbtn" style="display: none;">Update Product</button>
+    </div>
+
+    <h2>Products</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Product Name</th>
+                <th>Price(₹)</th>
+                <th>Quantity</th>
+                <th>Total(₹)</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+             
+        </tbody>
+    </table>
+
+    <div>
+        <h4>Total Items: <span id="total_items"></span></h4>
+        <label>Discount(<span id="discount_percentage">10</span>%):</label>
+        <input id="discount" type="number" onchange="handleDiscount()" value="10">
+        <label>GST(<span id="gst_percentage">18</span>%):</label>
+        <input id="gst" type="number" onchange="handleGst()" value="18">
+        <h4>Sub Total: ₹ <span id="subtotal">0</span></h4>
+        <h4>Discounted Amount: ₹ <span id="discountedamount">0</span></h4>
+        <h4>GST Amount: ₹ <span id="gstamount">0</span></h4>
+        <h2>Final Total: ₹ <span id="finaltotal">0</span></h2>
+    </div>
+
+    <div id="printSection" style="display:none; padding:20px;">
+
+    <h2>Invoice</h2>
+    <p><strong>Invoice No:</strong> <span id="p_invoice"></span></p>
+    <p><strong>Name:</strong> <span id="p_name"></span></p>
+    <p><strong>Phone:</strong> <span id="p_phone"></span></p>
+
+    <h3>Products</h3>
+    <table border="1" width="100%" cellspacing="0" cellpadding="5">
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Qty</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody id="p_tbody"></tbody>
+    </table>
+
+    <h3>Summary</h3>
+    <p><strong>Subtotal:</strong> ₹ <span id="p_subtotal"></span></p>
+    <p><strong>Discount:</strong> ₹ <span id="p_discount"></span></p>
+    <p><strong>GST:</strong> ₹ <span id="p_gst"></span></p>
+    <h2><strong>Final Total:</strong> ₹ <span id="p_final"></span></h2>
+
+    </div>
+
+
+
+    <button onclick="printBill()">Print Bill</button>
+
+    <button onclick="downloadPDF()">Download Invoice</button>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
