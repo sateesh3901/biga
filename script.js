@@ -168,3 +168,15 @@ function printBill() {
 function downloadPDF(){
     alert("soon to be added")
 }
+
+
+document.getElementById("themeToggle").onclick = () => {
+    document.body.classList.toggle("dark");
+
+    const btn = document.getElementById("themeToggle");
+    if (document.body.classList.contains("dark")) {
+        btn.textContent = "☀️ Light Mode";
+    } else {
+        btn.textContent = "🌙 Dark Mode";
+    }
+};
